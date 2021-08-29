@@ -4,10 +4,12 @@ const express = require('express');
 
 const app = express();
 
+require('dotenv').config();
+
 app.use(express.json());
 
 app.use(cors({
-    origin: '*'
+    origin: ['http://localhost', 'https://diftinto.com', 'https://www.diftinto.com', 'https://diftinto.netlify.app']
 }));
 
 
@@ -34,12 +36,12 @@ app.post('/send-email', (req, res) => {
         `
     
     const transporter = nodemailer.createTransport({
-        host: "mail.diftinto.com",
-        port: 465,
+        host: process.env.SERVER_MAIL,
+        port: process.env.PORT_MAIL,
         secure: true,
         auth: {
-            user: "info@diftinto.com",
-            pass: 'VGETp@2011'
+            user: process.env.USER_MAIL,
+            pass: process.env.PASS_MAIL
         },
     });
 
@@ -63,6 +65,6 @@ app.post('/send-email', (req, res) => {
 })
 
 
-app.listen(3030, () => {
-    console.log("Servidor arriba en puerto 3030")
+app.listen(process.env.PORT, () => {
+    console.log("Servidor arriba en puerto " + process.env.PORT )
 })
