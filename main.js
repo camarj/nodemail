@@ -9,7 +9,8 @@ require('dotenv').config();
 app.use(express.json());
 
 app.use(cors({
-    origin: ['http://localhost', 'https://diftinto.com', 'https://www.diftinto.com', 'https://diftinto.netlify.app']
+    // origin: ['http://localhost', 'https://diftinto.com', 'https://www.diftinto.com', 'https://diftinto.netlify.app']
+    origin: '*'
 }));
 
 
